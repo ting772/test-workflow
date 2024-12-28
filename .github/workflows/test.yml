@@ -28,6 +28,11 @@ jobs:
           npm install
           npm run build
 
+      - name: 上传打包结果
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
       - name: 部署
         uses: peaceiris/actions-gh-pages@v4
         with:
