@@ -1,21 +1,34 @@
 name: GitHub Pages部署
 run-name: ${{ github.actor }} 正在部署GitHub Pages 🚀
 on: 
+  # Runs on pushes targeting the default branch
   push:
     branches: [$default-branch]
+
+  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 jobs:
-  Explore-GitHub-Actions:
+  # Build job
+  build:
     runs-on: ubuntu-latest
+    name: 构建
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      - name: Check out repository code
-        uses: actions/checkout@v4
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+      - uses: actions/checkout@v3
+
+      - name: 安装nodejs V20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 安装依赖包
+        run: npm i
+
+      - name: 构建
+        run: npm run build
+
+      - name: 部署
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+
