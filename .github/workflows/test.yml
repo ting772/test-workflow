@@ -30,7 +30,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
-          # name: 打包结果
+          name: package
   
   # deploy:
   #   runs-on: ubuntu-24.04
