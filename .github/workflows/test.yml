@@ -1,5 +1,5 @@
-name: GitHub Actions Demo
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+name: GitHub Pages部署
+run-name: ${{ github.actor }} 正在部署GitHub Pages 🚀
 on: 
   push:
     branches: [$default-branch]
