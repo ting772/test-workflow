@@ -32,15 +32,20 @@ jobs:
           path: ./dist
           name: package
   
-  # deploy:
-  #   runs-on: ubuntu-24.04
-  #   name: 部署
-  #   permissions:
-  #     contents: write
-  #   needs: build
-  #   steps:
-  #     - name: 部署到github page
-  #       uses: peaceiris/actions-gh-pages@v4
-  #       with:
-  #         github_token: ${{ secrets.GITHUB_TOKEN }}
-  #         publish_dir: ./dist
+  deploy:
+    runs-on: ubuntu-24.04
+    name: 部署
+    permissions:
+      contents: write
+    needs: build
+    steps:
+      - name: 下载构件
+        uses: dawidd6/action-download-artifact@v7
+        with:
+          path: ./dist
+          name: package
+      - name: 部署到github page
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
