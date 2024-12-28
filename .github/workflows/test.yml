@@ -12,8 +12,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     name: 构建
+    permissions:
+      contents: write
     steps:
-      - uses: actions/checkout@v3
+      - name: 签出代码
+        uses: actions/checkout@v3
 
       - name: 安装nodejs V20
         uses: actions/setup-node@v4
