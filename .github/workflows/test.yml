@@ -45,7 +45,7 @@ jobs:
           path: ./
           name: package
       - name: 展示下载artifact
-        run: ls -R .
+        run: ls -alh
       - name: 部署到github page
         uses: peaceiris/actions-gh-pages@v4
         with:
