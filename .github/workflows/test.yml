@@ -26,6 +26,9 @@ jobs:
           npm install
           npm run build
 
+      - name: 展示即将上传artifact
+        run: ls -alh ./dist
+
       - name: 上传构件
         uses: actions/upload-pages-artifact@v3
         with:
