@@ -8,10 +8,10 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 jobs:
-  # Build job
+  # 构建&部署
   build:
     runs-on: ubuntu-24.04
-    name: 构建
+    name: 构建&部署
     steps:
       - name: 签出代码
         uses: actions/checkout@v3
@@ -26,7 +26,7 @@ jobs:
           npm install
           npm run build
 
-      - name: 展示即将上传artifact
+      - name: 展示即将上传artifact的资源
         run: ls -alh ./dist
 
       - name: 上传构件
@@ -34,26 +34,9 @@ jobs:
         with:
           path: ./dist
           name: package
-  
-  deploy:
-    runs-on: ubuntu-24.04
-    name: 部署
-    permissions:
-      contents: write
-    needs: build
-    steps:
-      - name: 下载构件
-        uses: actions/download-artifact@v4
-        with:
-          name: package
-      - name: 解压tar包
-        run: |
-          mkdir output
-          tar -xvf artifact.tar -C ./output
-      - name: 展示下载artifact
-        run: ls -alh output
       - name: 部署到github page
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./output
+          publish_dir: ./dist
+  
