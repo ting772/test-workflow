@@ -46,6 +46,8 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: package
+      - name: 解压tar包
+        run: tar -xvf artifact.tar
       - name: 展示下载artifact
         run: ls -alh
       - name: 部署到github page
