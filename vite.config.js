@@ -3,6 +3,6 @@ import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base:"",//调整index.html资源引用为相对路径
+  base:"./",//调整index.html资源引用为相对路径
   plugins: [vue()],
 })
