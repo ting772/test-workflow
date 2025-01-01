@@ -42,10 +42,10 @@ jobs:
       - name: 下载构件
         uses: dawidd6/action-download-artifact@v7
         with:
-          path: ./dist
+          path: ./
           name: package
       - name: 部署到github page
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: ./package
