@@ -49,7 +49,7 @@ jobs:
       - name: 解压tar包
         run: tar -xvf artifact.tar -C ./output
       - name: 展示下载artifact
-        run: ls -alh
+        run: ls -alh output
       - name: 部署到github page
         uses: peaceiris/actions-gh-pages@v4
         with:
