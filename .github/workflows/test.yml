@@ -47,11 +47,11 @@ jobs:
         with:
           name: package
       - name: 解压tar包
-        run: tar -xvf artifact.tar
+        run: tar -xvf artifact.tar -C ./output
       - name: 展示下载artifact
         run: ls -alh
       - name: 部署到github page
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./artifact.tar
+          publish_dir: ./output
